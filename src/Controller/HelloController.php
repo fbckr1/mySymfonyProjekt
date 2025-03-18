@@ -1,10 +1,11 @@
 <?php
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HelloController
+class HelloController extends AbstractController
 {
     // #[Route('/hello', name: 'hello')]
     
@@ -16,7 +17,8 @@ class HelloController
     #[route('/hallo/{name}', name: 'hallo_name', defaults: ['name' => 'Gast'])]  
     public function greet(string $name): Response {
 
-        $html = "<h1>Hallo $name!</h1><p>Willkommen bei Symfony!</p>";
-        return new Response($html);
+        return $this->render('hello/greet.html.twig', [
+            'name' => $name
+        ]);
     }
 }
