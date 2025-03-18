@@ -1,5 +1,7 @@
 <h1>Mein To-Do-Liste</h1>
-<p> <?php foreach ($todos as $todo): ?>
+<p> 
+    <?php $todos = ['PHP lernen', 'Symfony lernen', 'Shopware lernen'];?>
+    <?php foreach ($todos as $todo): ?>
     <li> <?php echo $todo->getTask(); ?> </li>
 <?php endforeach; ?>
 </p>
