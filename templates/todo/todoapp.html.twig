@@ -1,11 +1,10 @@
 <h1>Mein To-Do-Liste</h1>
 <p> 
-    <?php $todos = ['PHP lernen', 'Symfony lernen', 'Shopware lernen'];?>
-    <?php foreach ($todos as $todo): ?>
-    <li> <?php echo $todo->getTask(); ?> </li>
-<?php endforeach; ?>
+    {% for todo in todos %}
+        <li> {{ todo }} </li>
+    {% endfor %}
 </p>
-<form action="/todo" method="post">
-    <input type="text" name="task" placeholder="Neue Aufgabe">
+<form action="/todoapp" method="post">
+    <input type="text" name="todos" placeholder="Neue Aufgabe">
     <button type="submit">Hinzufügen</button>
 </form>
