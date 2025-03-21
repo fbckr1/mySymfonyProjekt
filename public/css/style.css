@@ -37,9 +37,17 @@ li:hover {
     background-color: #3a3a3a;
 }
 
+.success {
+    color: #4caf50;
+    background-color: #2e4a2e;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 .error {
-    color: #ff6b6b;
-    background-color: #4a2c2c;
+    color: #ff6b6b; 
+    background-color: #4a2c2c; 
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;

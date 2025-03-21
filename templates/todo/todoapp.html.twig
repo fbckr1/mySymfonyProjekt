@@ -7,21 +7,34 @@
     </head>
     <body>
         <h1>Meine To-Do-Liste</h1>
-        <ol> 
-            {%if todos is defined and todos is not empty%}
-                {% for index, todo in todos %}
-                    <li> {{ todo|escape }} 
+
+        <!-- Flash-Messages anzeigen -->
+        {% for message in app.flashes('success') %}
+            <div class="success">{{ message }}</div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="error">{{ message }}</div>
+        {% endfor %}
+
+        <ol>
+            {% if todos is defined and todos is not empty %}
+                {% for index, task in todos %}
+                    <li>
+                        {{ task|escape }}
                         <form action="{{ path('deleteTodo') }}" method="post" style="display:inline;">
                             <input type="hidden" name="index" value="{{ index }}">
-                            <button type="submit">Entfernen</button>
+                            <button type="submit" class="delete-btn">Entfernen</button>
                         </form>
                     </li>
                 {% endfor %}
+            {% else %}
+                <p>Noch keine Todos!</p>
             {% endif %}
         </ol>
+
         <form id="newTodo" action="{{ path('todoapp') }}" method="post">
-            <input type="text" name="todos" placeholder="Neue Aufgabe">
+            <input type="text" name="task" placeholder="Neue Aufgabe">
             <button type="submit">Hinzufügen</button>
         </form>
-    </bod<>
+    </body>
 </html>

@@ -4,7 +4,7 @@ namespace App\Service;
 
 class TodoService
 {
-    private array $todos = [];
+    private array $todos = ["Symfony lernen","Twig lernen"];
 
     /**
      * Gibt die Liste aller To-Dos zurück.
