@@ -1,15 +1,27 @@
-<h1>Meine To-Do-Liste</h1>
-<ol> 
-    {% for index, todo in todos %}
-        <li> {{ todo }} 
-            <form action="{{ path('deleteTodo') }}" method="post" style="display:inline;">
-                <input type="hidden" name="index" value="{{ index }}">
-                <button type="submit">Entfernen</button>
-            </form>
-        </li>
-    {% endfor %}
-</ol>
-<form action="{{ path('todoapp') }}" method="post">
-    <input type="text" name="todos" placeholder="Neue Aufgabe">
-    <button type="submit">Hinzufügen</button>
-</form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Meine To-Do-Liste</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
+    <body>
+        <h1>Meine To-Do-Liste</h1>
+        <ol> 
+            {%if todos is defined and todos is not empty%}
+                {% for index, todo in todos %}
+                    <li> {{ todo|escape }} 
+                        <form action="{{ path('deleteTodo') }}" method="post" style="display:inline;">
+                            <input type="hidden" name="index" value="{{ index }}">
+                            <button type="submit">Entfernen</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ol>
+        <form id="newTodo" action="{{ path('todoapp') }}" method="post">
+            <input type="text" name="todos" placeholder="Neue Aufgabe">
+            <button type="submit">Hinzufügen</button>
+        </form>
+    </bod<>
+</html>

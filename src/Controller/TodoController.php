@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TodoController extends AbstractController
 {
-    #[Route('/todoapp', name: 'todoapp', methods: ['POST'])]   
+    #[Route('/todoapp', name: 'todoapp', methods: ['POST', 'GET'])]   
     public function createTodo(Request $request, SessionInterface $session): Response
     {
         if(!$session->has('todos')) {
@@ -35,12 +35,12 @@ class TodoController extends AbstractController
     public function removeTodo(Request $request, SessionInterface $session): Response
     {
         if ($request->isMethod('POST')) {
-            $todoIndex = $request->request->get('index');
+            $todoIndex = (int) $request->request->get('index');
             if ($session->has('todos')) {
                 $todos = $session->get('todos');
                 if (isset($todos[$todoIndex])) {
                     unset($todos[$todoIndex]);
-                    $session->set('todos', array_values($todos));
+                    $session->set('todos', \array_values($todos));
                 }
             }
         }
